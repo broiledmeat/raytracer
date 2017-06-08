@@ -1,0 +1,9 @@
+[package]
+name = "raytracer"
+version = "0.1.0"
+authors = ["Derrick Staples <broiledmeat@gmail.com>"]
+
+[dependencies]
+lodepng = "*"
+rgb = "*"
+rand = "*"
