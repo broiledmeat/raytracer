@@ -10,7 +10,10 @@ mod vector3;
 use rgb::{RGBA, ByteSlice};
 use camera::Camera;
 use ray::Ray;
-use renderable::{Plane, Sphere, Cube};
+use renderable::plane::Plane;
+use renderable::plane_bounded::PlaneBounded;
+use renderable::sphere::Sphere;
+use renderable::cube::Cube;
 use material::{Lambert, Metal, Dielectric};
 use scene::Scene;
 use vector3::Vector3;
@@ -28,6 +31,8 @@ fn main()
         renderables: vec![
             Box::new(Plane{origin: Vector3{x: 0.0, y: 0.0, z: 0.0}, normal: Vector3{x: 0.0, y: 1.0, z: 0.0},
                 material: Box::new(Lambert{albedo: Vector3{x: 0.4, y: 0.8, z: 0.4}})}),
+            Box::new(PlaneBounded{origin: Vector3{x: 0.0, y: 0.25, z: 0.5}, normal: Vector3{x: -0.25, y: 0.5, z: 0.0}, width: 0.5, depth: 0.25,
+                material: Box::new(Lambert{albedo: Vector3{x: 0.4, y: 0.4, z: 0.8}})}),
             Box::new(Sphere{origin: Vector3{x: -1.0, y: 0.5, z: -1.0}, radius: 0.5,
                 material: Box::new(Metal{albedo: Vector3{x: 0.8, y: 0.6, z: 0.2}, fuzz: 0.05})}),
             Box::new(Sphere{origin: Vector3{x: 2.0, y: 0.4, z: -0.2}, radius: 0.3,
