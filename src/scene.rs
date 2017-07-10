@@ -1,6 +1,6 @@
 use std::f64;
 use ray::Ray;
-use renderable::{Renderable, HitResult};
+use renderable::{Renderable, HitResult, EPSILON};
 
 pub struct Scene
 {
@@ -16,7 +16,7 @@ impl Scene
 
         for renderable in self.renderables.iter()
         {
-            let child_result = renderable.test_hit(ray, 0.001, f64::MAX);
+            let child_result = renderable.test_hit(ray, EPSILON, f64::MAX);
             match child_result
             {
                 None => {},
