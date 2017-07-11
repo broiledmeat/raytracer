@@ -14,7 +14,9 @@ use renderable::plane::Plane;
 use renderable::plane_bounded::PlaneBounded;
 use renderable::sphere::Sphere;
 use renderable::cube::Cube;
-use material::{Lambert, Metal, Dielectric};
+use material::lambert::Lambert;
+use material::metal::Metal;
+use material::dielectric::Dielectric;
 use scene::Scene;
 use vector3::Vector3;
 
