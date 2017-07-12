@@ -14,6 +14,11 @@ pub const ONE: Vector3 = Vector3{x: 1.0, y: 1.0, z: 1.0};
 
 impl Vector3
 {
+    pub fn new(x: f64, y: f64, z: f64) -> Vector3
+    {
+        Vector3 { x: x, y: y, z: z }
+    }
+
     pub fn length(&self) -> f64
     {
         self.length_sqr().sqrt()

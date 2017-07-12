@@ -8,6 +8,14 @@ pub struct Lambert
     pub albedo: Vector3
 }
 
+impl Lambert
+{
+    pub fn new(albedo: Vector3) -> Lambert
+    {
+        Lambert { albedo: albedo }
+    }
+}
+
 impl Material for Lambert
 {
     #[allow(unused_variables)]

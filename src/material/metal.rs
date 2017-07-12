@@ -9,6 +9,14 @@ pub struct Metal
     pub fuzz: f64
 }
 
+impl Metal
+{
+    pub fn new(albedo: Vector3, fuzz: f64) -> Metal
+    {
+        Metal { albedo: albedo, fuzz: fuzz }
+    }
+}
+
 impl Material for Metal
 {
     fn scatter(&self, ray: Ray, hit_result: HitResult) -> Option<ScatterResult>

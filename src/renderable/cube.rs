@@ -13,6 +13,14 @@ pub struct Cube
     pub material: Box<Material>
 }
 
+impl Cube
+{
+    pub fn new<T: Material + 'static>(origin: Vector3, width: f64, height: f64, depth: f64, material: T) -> Cube
+    {
+        Cube { origin: origin, width: width, height: height, depth: depth, material: Box::new(material) }
+    }
+}
+
 impl Renderable for Cube
 {
     fn test_hit(&self, ray: Ray, min_t: f64, max_t: f64) -> Option<HitResult>

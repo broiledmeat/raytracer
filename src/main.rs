@@ -28,23 +28,14 @@ fn main()
     const RAY_COUNT: usize = 200;
     const BOUNCE_MAX: i32 = 100;
 
-    let scene = Scene
-    {
-        renderables: vec![
-            Box::new(Plane{origin: Vector3{x: 0.0, y: 0.0, z: 0.0}, normal: Vector3{x: 0.0, y: 1.0, z: 0.0},
-                material: Box::new(Lambert{albedo: Vector3{x: 0.4, y: 0.8, z: 0.4}})}),
-            Box::new(PlaneBounded{origin: Vector3{x: 0.0, y: 0.25, z: 0.5}, normal: Vector3{x: -0.25, y: 0.5, z: 0.0}, width: 0.5, depth: 0.25,
-                material: Box::new(Lambert{albedo: Vector3{x: 0.4, y: 0.4, z: 0.8}})}),
-            Box::new(Sphere{origin: Vector3{x: -1.0, y: 0.5, z: -1.0}, radius: 0.5,
-                material: Box::new(Metal{albedo: Vector3{x: 0.8, y: 0.6, z: 0.2}, fuzz: 0.05})}),
-            Box::new(Sphere{origin: Vector3{x: 2.0, y: 0.4, z: -0.2}, radius: 0.3,
-                material: Box::new(Metal{albedo: Vector3{x: 0.8, y: 0.2, z: 0.2}, fuzz: 0.05})}),
-            Box::new(Cube{origin: Vector3{x: -0.25, y: 0.5, z:0.0}, width: 0.5, height: 0.5, depth: 0.5,
-                material: Box::new(Lambert{albedo: Vector3{x: 0.8, y: 0.0, z: 0.0}})}),
-            Box::new(Cube{origin: Vector3{x: 0.5, y: 0.5, z:0.0}, width: 1.0, height: 0.5, depth: 0.5,
-                material: Box::new(Dielectric{refraction: 1.0})}),
-        ]
-    };
+    let mut scene = Scene::new();
+    scene.add(Plane::new(Vector3::new(0.0, 0.0, 0.0), Vector3::new(0.0, 1.0, 0.0), Lambert::new(Vector3::new(0.4, 0.8, 0.4))));
+    scene.add(PlaneBounded::new(Vector3::new(0.0, 0.25, 0.5), Vector3::new(-0.25, 0.5, 0.0), 0.5, 0.25, Lambert::new(Vector3::new(0.4, 0.4, 0.8))));
+    scene.add(Sphere::new(Vector3::new(-1.0, 0.5, -1.0), 0.5, Metal::new(Vector3::new(0.8, 0.6, 0.2), 0.2)));
+    scene.add(Sphere::new(Vector3::new(1.0, 0.5, 0.2), 0.35, Metal::new(Vector3::new(0.8, 0.2, 0.6), 0.05)));
+    scene.add(Cube::new(Vector3::new(-0.25, 0.5, -0.2), 0.5, 0.5, 0.5, Lambert::new(Vector3::new(0.8, 0.0, 0.0))));
+    scene.add(Cube::new(Vector3::new(0.5, 0.5, 0.5), 1.0, 0.5, 0.5, Dielectric::new(0.5)));
+
     let camera_origin = Vector3{x: -0.75, y: 1.2, z: 1.0};
     let camera_look_at = Vector3{x: 0.0, y: 0.5, z: 0.0};
     let camera_up = Vector3{x: 0.0, y: 1.0, z:0.0};

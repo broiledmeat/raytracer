@@ -12,6 +12,14 @@ pub struct PlaneBounded
     pub material: Box<Material>
 }
 
+impl PlaneBounded
+{
+    pub fn new<T: Material + 'static>(origin: Vector3, normal: Vector3, width: f64, depth: f64, material: T) -> PlaneBounded
+    {
+        PlaneBounded { origin: origin, normal: normal, width: width, depth: depth, material: Box::new(material) }
+    }
+}
+
 impl Renderable for PlaneBounded
 {
     fn test_hit(&self, ray: Ray, min_t: f64, max_t: f64) -> Option<HitResult>

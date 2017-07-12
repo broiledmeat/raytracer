@@ -10,6 +10,14 @@ pub struct Plane
     pub material: Box<Material>
 }
 
+impl Plane
+{
+    pub fn new<T: Material + 'static>(origin: Vector3, normal: Vector3, material: T) -> Plane
+    {
+        Plane { origin: origin, normal: normal, material: Box::new(material) }
+    }
+}
+
 impl Renderable for Plane
 {
     fn test_hit(&self, ray: Ray, min_t: f64, max_t: f64) -> Option<HitResult>

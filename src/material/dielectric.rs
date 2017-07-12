@@ -9,6 +9,14 @@ pub struct Dielectric
     pub refraction: f64
 }
 
+impl Dielectric
+{
+    pub fn new(refraction: f64) -> Dielectric
+    {
+        Dielectric { refraction: refraction }
+    }
+}
+
 impl Material for Dielectric
 {
     fn scatter(&self, ray: Ray, hit_result: HitResult) -> Option<ScatterResult>

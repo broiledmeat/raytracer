@@ -4,11 +4,21 @@ use renderable::{Renderable, HitResult, EPSILON};
 
 pub struct Scene
 {
-    pub renderables: Vec<Box<Renderable>>
+    renderables: Vec<Box<Renderable>>
 }
 
 impl Scene
 {
+    pub fn new() -> Scene
+    {
+        Scene { renderables: Vec::new() }
+    }
+
+    pub fn add<T: Renderable + 'static>(&mut self, renderable: T)
+    {
+        self.renderables.push(Box::new(renderable))
+    }
+
     pub fn test_hit(&self, ray: Ray) -> Option<HitResult>
     {
         let mut result: Option<HitResult> = None;

@@ -10,6 +10,14 @@ pub struct Sphere
     pub material: Box<Material>
 }
 
+impl Sphere
+{
+    pub fn new<T: Material + 'static>(origin: Vector3, radius: f64, material: T) -> Sphere
+    {
+        Sphere { origin: origin, radius: radius, material: Box::new(material) }
+    }
+}
+
 impl Renderable for Sphere
 {
     fn test_hit(&self, ray: Ray, min_t: f64, max_t: f64) -> Option<HitResult>
